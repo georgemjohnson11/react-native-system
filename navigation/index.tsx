@@ -16,6 +16,7 @@ import InfoScreen from '../screens/InfoScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import LoginScreen from '../screens/LoginScreen';
+import LetsPlayScreen from '../screens/LetsPlayScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import LogInScreen from '../screens/LoginScreen';
@@ -101,10 +102,10 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Let's Play!"
+        component={LetsPlayScreen}
         options={{
-          title: 'Tab Two',
+          title: "Let's Play!",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
