@@ -12,12 +12,13 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
+import InfoScreen from '../screens/InfoScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import RegistrationScreen from '../screens/RegistrationScreen';
+import LoginScreen from '../screens/LoginScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import LogInScreen from '../screens/LoginScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -41,7 +42,8 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Login" component={LogInScreen} />
+        <Stack.Screen name="Info" component={InfoScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -58,19 +60,19 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Registration"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
+        name="Registration"
+        component={RegistrationScreen}
+        options={({ navigation }: RootTabScreenProps<'Registration'>) => ({
+          title: 'Registration',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate('Info')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
@@ -79,6 +81,20 @@ function BottomTabNavigator() {
                 size={25}
                 color={Colors[colorScheme].text}
                 style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
+          headerLeft: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Info')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="user-circle-o"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginLeft: 15 }}
               />
             </Pressable>
           ),
